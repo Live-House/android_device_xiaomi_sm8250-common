@@ -100,6 +100,7 @@ TARGET_KERNEL_CONFIG := \
     vendor/kona-perf_defconfig \
     vendor/debugfs.config \
     vendor/xiaomi/sm8250-common.config
+BOARD_RAMDISK_USE_LZ4 := true # Allow LZ4 compression
 
 # Media
 TARGET_USES_ION := true
