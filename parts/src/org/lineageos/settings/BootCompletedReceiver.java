@@ -51,6 +51,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         }
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);
+        FileUtils.enableService(context);
 
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
         FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
