@@ -54,3 +54,7 @@ xiaomi_kona_wifi_install_symlink {
         },
     },
 }
+
+cc_library_shared {
+    name: "libldacBT_bco",
+}
