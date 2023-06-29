@@ -57,6 +57,9 @@
     <string name="refresh_high">90Hz</string>
     <string name="refresh_extreme">120Hz</string>    
 
+    <!-- Refresh Rate Tile -->
+    <string name="refresh_rate_tile_title">Refresh Rate</string>
+
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Clear speaker</string>
     <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
