@@ -18,6 +18,12 @@ from extract_utils.fixups_lib import (
 )
 
 blob_fixups: blob_fixups_user_type = {
+    (
+        'vendor/lib64/libdlbdsservice.so',
+        'vendor/lib/libstagefright_soft_ac4dec.so',
+        'vendor/lib/libstagefright_soft_ddpdec.so',
+    ): blob_fixup()
+        .replace_needed('libstagefright_foundation.so', 'libstagefright_foundation-v33.so'),
     'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
         .add_needed('libgui_shim.so'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
