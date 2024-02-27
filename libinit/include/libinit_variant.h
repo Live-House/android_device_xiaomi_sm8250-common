@@ -21,6 +21,7 @@ typedef struct variant_info {
     std::string mod_device;
     std::string model;
     std::string build_fingerprint;
+    std::string hwsku;
 
     bool nfc;
 } variant_info_t;
