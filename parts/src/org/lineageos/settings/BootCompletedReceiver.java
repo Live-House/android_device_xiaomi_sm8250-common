@@ -26,6 +26,7 @@ import android.os.SystemProperties;
 import android.util.Log;
 import androidx.preference.PreferenceManager;
 
+import org.lineageos.settings.display.ColorService;
 import org.lineageos.settings.dirac.DiracUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
@@ -53,6 +54,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         }
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);
+        ColorService.startService(context);
         FileUtils.enableService(context);
 
         FileUtils.writeLine(DC_DIMMING_NODE,
