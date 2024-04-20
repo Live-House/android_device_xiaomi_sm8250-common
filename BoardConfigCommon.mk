@@ -62,6 +62,8 @@ TARGET_CAMERA_PACKAGE_NAME := com.android.camera
 
 # Camera - HIDL overrideFormat
 TARGET_CAMERA_USES_NEWER_HIDL_OVERRIDE_FORMAT = true
+# Camera - HIDL overrideFormat - Alternative Version
+TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED = true
 
 # Display
 TARGET_NO_RAW10_CUSTOM_FORMAT := true
