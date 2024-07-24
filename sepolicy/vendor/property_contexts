@@ -59,6 +59,8 @@ ro.vendor.whitepoint_calibration_enable         u:object_r:vendor_displayfeature
 ro.vendor.xiaomi.bl.poll                        u:object_r:vendor_displayfeature_prop:s0
 vendor.displayfeature.entry.enable              u:object_r:vendor_displayfeature_prop:s0
 vendor.hbm.enable                               u:object_r:vendor_displayfeature_prop:s0
+ro.lowbrightness_fod_d_threshold                u:object_r:vendor_displayfeature_prop:s0
+ro.lowbrightness_fod_lux_threshold              u:object_r:vendor_displayfeature_prop:s0
 
 # Fingerprint
 gf.debug.                                                                                           u:object_r:vendor_fingerprint_prop:s0
