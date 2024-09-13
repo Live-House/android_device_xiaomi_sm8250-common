@@ -52,7 +52,7 @@ public final class ThermalUtils {
     protected static final int STATE_NAVIGATION = 6;
     protected static final int STATE_STREAMING = 7;
     protected static final int STATE_VIDEO = 8;
-    private static final String THERMAL_CONTROL = "thermal_control";
+    private static final String THERMAL_CONTROL = "thermal_control_v2";
 
     private static final Map<Integer, String> THERMAL_STATE_MAP = Map.of(
         STATE_DEFAULT, "0",
@@ -74,6 +74,7 @@ public final class ThermalUtils {
     private static final String THERMAL_NAVIGATION = "thermal.navigation=";
     private static final String THERMAL_STREAMING = "thermal.streaming=";
     private static final String THERMAL_VIDEO = "thermal.video=";
+    private static final String THERMAL_DEFAULT = "thermal.default=";
 
     private static final String THERMAL_SCONFIG = "/sys/class/thermal/thermal_message/sconfig";
 
@@ -111,7 +112,7 @@ public final class ThermalUtils {
         if (value == null || value.isEmpty()) {
             value = THERMAL_BENCHMARK + ":" + THERMAL_BROWSER + ":" + THERMAL_CAMERA + ":" +
                     THERMAL_DIALER + ":" + THERMAL_GAMING + ":" + THERMAL_NAVIGATION + ":" +
-                    THERMAL_STREAMING + ":" + THERMAL_VIDEO;
+                    THERMAL_STREAMING + ":" + THERMAL_VIDEO + ":" + THERMAL_DEFAULT;
             writeValue(value);
         }
         return value;
@@ -148,10 +149,13 @@ public final class ThermalUtils {
             case STATE_VIDEO:
                 modes[7] = modes[7] + packageName + ",";
                 break;
+            case STATE_DEFAULT:
+                modes[8] = modes[8] + packageName + ",";
+                break;
         }
 
         finalString = modes[0] + ":" + modes[1] + ":" + modes[2] + ":" + modes[3] + ":" +
-                modes[4] + ":" + modes[5] + ":" + modes[6] + ":" + modes[7];
+                modes[4] + ":" + modes[5] + ":" + modes[6] + ":" + modes[7] + ":" + modes[8];
 
         writeValue(finalString);
     }
@@ -176,6 +180,8 @@ public final class ThermalUtils {
             state = STATE_STREAMING;
         } else if (modes[7].contains(packageName + ",")) {
             state = STATE_VIDEO;
+        } else if (modes[8].contains(packageName + ",")) {
+            state = STATE_DEFAULT;
         } else {
             // derive a default state based on package name
             state = getDefaultStateForPackage(packageName);
