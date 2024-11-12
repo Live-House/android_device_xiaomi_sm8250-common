@@ -90,6 +90,10 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             grep -q "gettid: 1" "${2}" || echo "gettid: 1" >> "${2}"
             ;;
+        system_ext/lib64/libwfdnative.so)
+            [ "$2" = "" ] && return 0
+            "${PATCHELF}" --add-needed "libinput_shim.so" "${2}"
+            ;;
         *)
             return 1
     esac
