@@ -193,7 +193,7 @@ public class ThermalSettingsFragment extends PreferenceFragment
         mSession.rebuild(mActivityFilter, ApplicationsState.ALPHA_COMPARATOR);
     }
 
-    private int getStateDrawable(int state) {
+    protected int getStateDrawable(int state) {
         switch (state) {
             case ThermalUtils.STATE_BENCHMARK:
                 return R.drawable.ic_thermal_benchmark;
