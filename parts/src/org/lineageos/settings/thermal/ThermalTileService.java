@@ -22,6 +22,7 @@ import android.app.IActivityTaskManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Icon;
 import android.os.RemoteException;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
@@ -33,6 +34,7 @@ import java.util.List;
 public class ThermalTileService extends TileService {
 
     private ThermalUtils mThermalUtils;
+    private ThermalSettingsFragment mThermalSettingsFragment;
     private Tile tile;
 
     private String foregroundApp;
@@ -93,9 +95,12 @@ public class ThermalTileService extends TileService {
         int state = mThermalUtils.getStateForPackage(foregroundApp);
 
         String displayText = getStateString(state);
+        Icon icon = Icon.createWithResource(this,
+            mThermalSettingsFragment.getStateDrawable(state));
 
         tile.setContentDescription(displayText);
         tile.setSubtitle(displayText);
+        tile.setIcon(icon);
 
         if (isAppLaunchable(foregroundApp)) {
             tile.setState(Tile.STATE_ACTIVE);
@@ -117,6 +122,7 @@ public class ThermalTileService extends TileService {
             // Do nothing
         }
 
+        mThermalSettingsFragment = new ThermalSettingsFragment();
         mThermalUtils = new ThermalUtils(this);
         tile = getQsTile();
         updateTileView();
