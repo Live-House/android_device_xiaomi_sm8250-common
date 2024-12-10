@@ -25,6 +25,9 @@ import android.view.Display;
 import android.provider.Settings;
 import androidx.preference.PreferenceManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public final class RefreshUtils {
 
     private static final String REFRESH_CONTROL = "refresh_control";
@@ -44,8 +47,10 @@ public final class RefreshUtils {
     private static final float REFRESH_STATE_STANDARD = 60f;
     private static final float REFRESH_STATE_EXTREME = 120f;
 
-    private static final String REFRESH_STANDARD = "refresh.standard=";
-    private static final String REFRESH_EXTREME = "refresh.extreme=";
+    private static final String[] REFRESH_MODES = {
+            "refresh.standard=",
+            "refresh.extreme="
+    };
 
     private SharedPreferences mSharedPrefs;
 
@@ -73,9 +78,35 @@ public final class RefreshUtils {
         String value = mSharedPrefs.getString(REFRESH_CONTROL, null);
 
         if (value == null || value.isEmpty()) {
-            value = REFRESH_STANDARD + ":" + REFRESH_EXTREME;
+            value = String.join(":", REFRESH_MODES);
             writeValue(value);
         }
+
+        String[] parsedModes = value.split(":");
+        if (parsedModes.length != REFRESH_MODES.length) {
+            Map<String, String> parsedData = new HashMap<>();
+
+            for (String entry : parsedModes) {
+                int eqIndex = entry.indexOf("=") + 1;
+                if (eqIndex > 0 && eqIndex < entry.length()) {
+                    String key = entry.substring(0, eqIndex).trim();
+                    String val = entry.substring(eqIndex).trim();
+                    parsedData.put(key, val);
+                }
+            }
+
+            StringBuilder rebasedValue = new StringBuilder();
+            for (String mode : REFRESH_MODES) {
+                if (rebasedValue.length() > 0) {
+                    rebasedValue.append(":");
+                }
+                rebasedValue.append(mode).append(parsedData.getOrDefault(mode, ""));
+            }
+
+            value = rebasedValue.toString();
+            writeValue(value);
+        }
+
         return value;
     }
 
