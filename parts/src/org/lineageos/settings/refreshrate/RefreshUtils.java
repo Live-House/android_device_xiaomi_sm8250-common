@@ -40,17 +40,17 @@ public final class RefreshUtils {
     protected static boolean isAppInList = false;
 
     protected static final int STATE_DEFAULT = 0;
-    protected static final int STATE_STANDARD = 1;
+    protected static final int STATE_MEDIUM = 1;
     protected static final int STATE_HIGH = 2;
     protected static final int STATE_EXTREME = 3;
 
     private static final float REFRESH_STATE_DEFAULT = 120f;
-    private static final float REFRESH_STATE_STANDARD = 60f;
+    private static final float REFRESH_STATE_MEDIUM = 60f;
     private static final float REFRESH_STATE_HIGH = 90f;
     private static final float REFRESH_STATE_EXTREME = 120f;
 
     private static final String[] REFRESH_MODES = {
-            "refresh.standard=",
+            "refresh.medium=",
             "refresh.high=",
             "refresh.extreme="
     };
@@ -120,7 +120,7 @@ public final class RefreshUtils {
         String finalString;
 
         switch (mode) {
-            case STATE_STANDARD:
+            case STATE_MEDIUM:
                 modes[0] = modes[0] + packageName + ",";
                 break;
             case STATE_HIGH:
@@ -141,7 +141,7 @@ public final class RefreshUtils {
         String[] modes = value.split(":");
         int state = STATE_DEFAULT;
         if (modes[0].contains(packageName + ",")) {
-            state = STATE_STANDARD;
+            state = STATE_MEDIUM;
         } else if (modes[1].contains(packageName + ",")) {
             state = STATE_HIGH;
         } else if (modes[2].contains(packageName + ",")) {
@@ -161,7 +161,7 @@ public final class RefreshUtils {
             modes = value.split(":");
 
             if (modes[0].contains(packageName + ",")) {
-                maxrate = REFRESH_STATE_STANDARD;
+                maxrate = REFRESH_STATE_MEDIUM;
                 if ( minrate > maxrate){
                 minrate = maxrate;
                 }
