@@ -240,7 +240,7 @@ vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
 vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
-# Graphics (Adreno)
+# Graphics (Adreno) - from AOSPA
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so;SYMLINK=vendor/lib/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -283,7 +283,7 @@ vendor/firmware/a650_zap.b02
 vendor/firmware/a650_zap.elf
 vendor/firmware/a650_zap.mdt
 
-# Graphics (Vulkan)
+# Graphics (Vulkan) - from AOSPA
 vendor/lib/hw/vulkan.adreno.so
 vendor/lib64/hw/vulkan.adreno.so
 
