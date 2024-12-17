@@ -205,11 +205,11 @@ endif
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.qti
+    android.hardware.health-service.xiaomi
 
 ifneq ($(TARGET_IS_VAB),true)
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.qti_recovery
+    android.hardware.health-service.xiaomi_recovery
 endif
 
 # HotwordEnrollement app permissions
