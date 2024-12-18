@@ -342,6 +342,8 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     android.hardware.thermal-service.qti
 
+$(call soong_config_set,qti_thermal,netlink,false)
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb-service.qti \
