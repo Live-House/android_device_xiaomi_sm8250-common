@@ -43,9 +43,14 @@ public class TouchSamplingSettingsFragment extends PreferenceFragment implements
         addPreferencesFromResource(R.xml.htsr_settings);
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         mHTSRPreference = (SwitchPreferenceCompat) findPreference(HTSR_ENABLE_KEY);
-        mHTSRPreference.setEnabled(true);
-        mHTSRPreference.setOnPreferenceChangeListener(this);
-        enableHTSR(0);
+        if (FileUtils.fileExists(TouchSamplingUtils.HTSR_FILE)) {
+            mHTSRPreference.setEnabled(true);
+            mHTSRPreference.setOnPreferenceChangeListener(this);
+            enableHTSR(0);
+        } else {
+            mHTSRPreference.setSummary(R.string.htsr_enable_summary_not_supported);
+            mHTSRPreference.setEnabled(false);
+        }
     }
 
     @Override
