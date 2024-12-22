@@ -200,6 +200,17 @@
                 android:resource="@string/htsr_enable_summary" />
         </activity>
 
+        <service
+            android:name=".touchsampling.TouchSamplingTileService"
+            android:icon="@drawable/ic_htsr"
+            android:label="@string/htsr_enable_title"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".speaker.ClearSpeakerActivity"
             android:exported="false"
