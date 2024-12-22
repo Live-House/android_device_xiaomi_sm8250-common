@@ -18,6 +18,7 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
+        android:icon="@drawable/ic_htsr"
         android:key="htsr_enable"
         android:summary="@string/htsr_enable_summary"
         android:title="@string/htsr_enable_title" />
