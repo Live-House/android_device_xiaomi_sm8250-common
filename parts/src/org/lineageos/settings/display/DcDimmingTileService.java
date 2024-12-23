@@ -33,7 +33,11 @@ public class DcDimmingTileService extends TileService {
 
     private void updateUI(boolean enabled) {
         final Tile tile = getQsTile();
-        tile.setState(enabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
+        if (FileUtils.fileExists(DC_DIMMING_NODE)) {
+            tile.setState(enabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
+        } else {
+            tile.setState(Tile.STATE_UNAVAILABLE);
+        }
         tile.updateTile();
     }
 
