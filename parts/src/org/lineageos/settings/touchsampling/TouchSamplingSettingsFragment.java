@@ -41,7 +41,6 @@ public class TouchSamplingSettingsFragment extends PreferenceFragment implements
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.htsr_settings);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         mHTSRPreference = (SwitchPreferenceCompat) findPreference(HTSR_ENABLE_KEY);
         if (FileUtils.fileExists(TouchSamplingUtils.HTSR_FILE)) {
             mHTSRPreference.setEnabled(true);
