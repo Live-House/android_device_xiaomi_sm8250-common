@@ -37,7 +37,7 @@ public class ThermalTileService extends TileService {
     private ThermalSettingsFragment mThermalSettingsFragment;
     private Tile tile;
 
-    private String foregroundApp;
+    private String mTopApp;
 
     protected boolean isAppLaunchable(String packageName) {
         PackageManager mPackageManager = getPackageManager();
@@ -91,8 +91,8 @@ public class ThermalTileService extends TileService {
         }
     }
 
-    private void updateTileView() {
-        int state = mThermalUtils.getStateForPackage(foregroundApp);
+    private void setTileView() {
+        int state = mThermalUtils.getStateForPackage(mTopApp);
 
         String displayText = getStateString(state);
         Icon icon = Icon.createWithResource(this,
@@ -101,13 +101,6 @@ public class ThermalTileService extends TileService {
         tile.setContentDescription(displayText);
         tile.setSubtitle(displayText);
         tile.setIcon(icon);
-
-        if (isAppLaunchable(foregroundApp)) {
-            tile.setState(Tile.STATE_ACTIVE);
-        } else {
-            tile.setState(Tile.STATE_INACTIVE);
-        }
-        tile.updateTile();
     }
 
     @Override
@@ -117,7 +110,7 @@ public class ThermalTileService extends TileService {
             IActivityTaskManager mActivityTaskManager = ActivityTaskManager.getService();
             final RootTaskInfo info = mActivityTaskManager.getFocusedRootTaskInfo();
             if (info == null || info.topActivity == null) return;
-            foregroundApp = info.topActivity.getPackageName();
+            mTopApp = info.topActivity.getPackageName();
         } catch (RemoteException e) {
             // Do nothing
         }
@@ -125,19 +118,21 @@ public class ThermalTileService extends TileService {
         mThermalSettingsFragment = new ThermalSettingsFragment();
         mThermalUtils = new ThermalUtils(this);
         tile = getQsTile();
-        updateTileView();
+        setTileView();
+        tile.setState(isAppLaunchable(mTopApp)
+            ? Tile.STATE_ACTIVE : Tile.STATE_UNAVAILABLE);
+        tile.updateTile();
     }
 
     @Override
     public void onClick() {
         super.onClick();
-        if (tile == null || foregroundApp == null) return;
+        if (tile == null || mTopApp == null) return;
 
-        if (tile.getState() == Tile.STATE_ACTIVE) {
-            mThermalUtils.writePackage(foregroundApp,
-                getNewState(mThermalUtils.getStateForPackage(foregroundApp)));
-            mThermalUtils.setThermalProfile(foregroundApp);
-        }
-        updateTileView();
+        mThermalUtils.writePackage(mTopApp,
+            getNewState(mThermalUtils.getStateForPackage(mTopApp)));
+        mThermalUtils.setThermalProfile(mTopApp);
+        setTileView();
+        tile.updateTile();
     }
 }
