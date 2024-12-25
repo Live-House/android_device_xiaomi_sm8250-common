@@ -26,10 +26,11 @@ import org.lineageos.settings.utils.FileUtils;
 public class TouchSamplingTileService extends TileService {
 
     private static final String HTSR_ENABLE_KEY = "htsr_enable";
+    private static final String HTSR_FILE = "/sys/devices/virtual/touch/touch_dev/bump_sample_rate";
 
     private void updateUI(boolean enabled) {
         final Tile tile = getQsTile();
-        if (FileUtils.fileExists(TouchSamplingUtils.HTSR_FILE)) {
+        if (FileUtils.fileExists(HTSR_FILE)) {
             tile.setState(enabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
         } else {
             tile.setState(Tile.STATE_UNAVAILABLE);
@@ -54,7 +55,7 @@ public class TouchSamplingTileService extends TileService {
         super.onClick();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean enabled = !(sharedPrefs.getBoolean(HTSR_ENABLE_KEY, false));
-        FileUtils.writeLine(TouchSamplingUtils.HTSR_FILE, enabled ? "1" : "0");
+        FileUtils.writeLine(HTSR_FILE, enabled ? "1" : "0");
         sharedPrefs.edit().putBoolean(HTSR_ENABLE_KEY, enabled).commit();
         updateUI(enabled);
     }
