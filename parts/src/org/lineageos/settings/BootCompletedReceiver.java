@@ -30,7 +30,6 @@ import org.lineageos.settings.dirac.DiracUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 import org.lineageos.settings.utils.FileUtils;
-import org.lineageos.settings.touchsampling.TouchSamplingUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -38,6 +37,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
     private static final String DC_DIMMING_NODE = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
+    private static final String HTSR_ENABLE_KEY = "htsr_enable";
+    private static final String HTSR_FILE = "/sys/devices/virtual/touch/touch_dev/bump_sample_rate";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -53,9 +54,11 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);
         FileUtils.enableService(context);
-        TouchSamplingUtils.restoreSamplingValue(context);
 
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
         FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
+
+        boolean HTSREnabled = sharedPrefs.getBoolean(HTSR_ENABLE_KEY, false);
+        FileUtils.writeLine(HTSR_FILE, HTSREnabled ? "1" : "0");
     }
 }
