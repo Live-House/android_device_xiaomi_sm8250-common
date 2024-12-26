@@ -55,10 +55,9 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         RefreshUtils.startService(context);
         FileUtils.enableService(context);
 
-        boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
-        FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
-
-        boolean HTSREnabled = sharedPrefs.getBoolean(HTSR_ENABLE_KEY, false);
-        FileUtils.writeLine(HTSR_FILE, HTSREnabled ? "1" : "0");
+        FileUtils.writeLine(DC_DIMMING_NODE,
+            sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false) ? "1" : "0");
+        FileUtils.writeLine(HTSR_FILE,
+            sharedPrefs.getBoolean(HTSR_ENABLE_KEY, false) ? "1" : "0");
     }
 }
