@@ -166,7 +166,6 @@ vendor/etc/init/vendor.xiaomi.hardware.displayfeature@1.0-service.rc
 vendor/lib64/hw/displayfeature.default.so
 vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so
 vendor/bin/displayfeature
-vendor/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so;MODULE_SUFFIX=_vendor
 vendor/lib64/libclient2slpi.notifier.so
 vendor/lib64/libdisplayfeature.so
 vendor/lib64/libdisplayfeatureservice.so
