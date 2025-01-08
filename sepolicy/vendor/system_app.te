@@ -1,3 +1,0 @@
-# Zram Access
-allow system_app sysfs_zram:dir search;
-allow system_app sysfs_zram:file r_file_perms;
