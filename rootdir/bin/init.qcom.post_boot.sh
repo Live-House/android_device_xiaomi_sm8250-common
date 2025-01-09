@@ -832,11 +832,6 @@ function configure_zram_parameters() {
         let zRamSizeMB="( $RamSizeGB * 1024 ) / 2"
     fi
 
-    # use MB avoid 32 bit overflow
-    if [ $zRamSizeMB -gt 4096 ]; then
-        let zRamSizeMB=4096
-    fi
-
     echo lz4 > /sys/block/zram0/comp_algorithm
 
     if [ -f /sys/block/zram0/disksize ]; then
