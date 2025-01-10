@@ -135,8 +135,14 @@ SSI_PARTITIONS := product system system_ext
 TREBLE_PARTITIONS := odm vendor
 ALL_PARTITIONS := $(SSI_PARTITIONS) $(TREBLE_PARTITIONS)
 
+TARGET_FILE_SYSTEM_TYPE ?= ext4
+ifeq ($(TARGET_USES_EROFS),true)
+TARGET_FILE_SYSTEM_TYPE := erofs
+BOARD_EROFS_PCLUSTER_SIZE := 262144
+endif
+
 $(foreach p, $(call to-upper, $(ALL_PARTITIONS)), \
-    $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4) \
+    $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := $(TARGET_FILE_SYSTEM_TYPE)) \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 
 # Partitions - dynamic
