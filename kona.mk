@@ -297,6 +297,10 @@ PRODUCT_PACKAGES += \
 # Platform
 TARGET_BOARD_PLATFORM := kona
 
+# Pocket Judge
+PRODUCT_PACKAGES += \
+    PocketJudge
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \

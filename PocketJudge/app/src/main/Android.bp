@@ -1,0 +1,51 @@
+android_app {
+    name: "PocketJudge",
+
+    min_sdk_version: "34",
+    target_sdk_version: "34",
+
+    srcs: [
+        "java/**/*.java",
+        "gen/**/*.java",
+
+    ],
+    use_resource_processor: true,
+    resource_dirs: ["res"],
+    certificate: "platform",
+    platform_apis: true,
+    privileged: true,
+    system_ext_specific: true,
+
+    static_libs: [
+        "androidx.core_core",
+        "androidx.preference_preference",
+        "SettingsLibCollapsingToolbarBaseActivity",
+        "SettingsLibFooterPreference",
+        "SettingsLibLayoutPreference",
+        "hilt_android",
+    ],
+
+    optimize: {
+        optimize: true,
+        proguard_flags_files: ["proguard.flags"],
+    },
+
+    required: [
+        "vendor.com.github.iusmac.pocketjudge.rc",
+        "privapp_whitelist_com.github.iusmac.pocketjudge.xml",
+    ],
+}
+
+prebuilt_etc {
+    name: "vendor.com.github.iusmac.pocketjudge.rc",
+    src: "vendor.com.github.iusmac.pocketjudge.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_com.github.iusmac.pocketjudge.xml",
+    src: "privapp_whitelist_com.github.iusmac.pocketjudge.xml",
+    sub_dir: "permissions",
+    system_ext_specific: true,
+}
