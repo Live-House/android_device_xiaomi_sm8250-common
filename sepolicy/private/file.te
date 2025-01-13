@@ -1,4 +1,4 @@
 type sysfs_htsr, sysfs_type, fs_type;
 
 # Pocket judge
-type pocket_judge_sysfs, fs_type, sysfs_type;
+# type pocket_judge_sysfs, fs_type, sysfs_type;
