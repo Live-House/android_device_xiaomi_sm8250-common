@@ -158,11 +158,11 @@ BOARD_VENDOR := xiaomi
 BOARD_USES_QCOM_HARDWARE := true
 
 # Properties
-TARGET_ODM_PROP += $(COMMON_PATH)/properties/odm.prop
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/properties/system.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor.prop
+TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 ifneq ($(TARGET_IS_TABLET),true)
-TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor_phone.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor_phone.prop
 endif
 
 # Recovery
