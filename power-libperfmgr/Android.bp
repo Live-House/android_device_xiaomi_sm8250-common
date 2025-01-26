@@ -1,0 +1,64 @@
+//
+// Copyright (C) 2021 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.power-service.lineage-libperfmgr",
+    defaults: [
+        "android.hardware.power-ndk_shared",
+        "power_libperfmgr_defaults",
+    ],
+    relative_install_path: "hw",
+    init_rc: ["aidl/android.hardware.power-service.lineage-libperfmgr.rc"],
+    vintf_fragments: ["aidl/android.hardware.power-service.lineage.xml"],
+    vendor: true,
+    cflags: [
+        "-Wno-unused-variable",
+        "-Wno-unused-parameter",
+        "-Wthread-safety",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libcutils",
+        "libdl",
+        "liblog",
+        "libperfmgr",
+        "libprocessgroup",
+        "libutils",
+        "pixel-power-ext-V1-ndk",
+        "android.hardware.common.fmq-V1-ndk",
+        "libfmq",
+    ],
+    static_libs: [
+        "libgmock",
+        "libgtest",
+    ],
+    srcs: [
+        "aidl/BackgroundWorker.cpp",
+        "aidl/GpuCalculationHelpers.cpp",
+        "aidl/GpuCapacityNode.cpp",
+        "aidl/service.cpp",
+        "aidl/InteractionHandler.cpp",
+        "aidl/Power.cpp",
+        "aidl/PowerExt.cpp",
+        "aidl/PowerHintSession.cpp",
+        "aidl/PowerSessionManager.cpp",
+        "aidl/UClampVoter.cpp",
+        "aidl/SessionRecords.cpp",
+        "aidl/SessionTaskMap.cpp",
+        "aidl/SessionValueEntry.cpp",
+    ],
+    cpp_std: "gnu++20",
+}
+
+cc_library_static {
+    name: "libperfmgr-ext",
+    defaults: ["android.hardware.power-ndk_shared"],
+    vendor: true,
+    srcs: [
+        "aidl/PowerModeExtension.cpp",
+    ],
+}
