@@ -1,0 +1,18 @@
+//
+// Copyright (C) 2022-2023 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library {
+    name: "libbinder_shim",
+    shared_libs: ["libbinder", "libutils"],
+    header_libs: ["libbinder_headers"],
+    srcs: [
+        "IServiceManager.cpp",
+        "OS_android.cpp",
+        "PermissionCache.cpp",
+    ],
+    version_script: "libbinder.map",
+    vendor_available: true
+}
