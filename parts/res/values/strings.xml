@@ -130,4 +130,8 @@
     <string name="htsr_enable_summary">Increases touch polling rate to decrease latency</string>
     <string name="htsr_enable_summary_not_supported">Increase Touch Responsiveness is currently not supported by the kernel</string>
 
+    <!-- Advanced display settings -->
+    <string name="advanced_display_title">Advanced display settings</string>
+    <string name="advanced_display_summary">Increase Touch Responsiveness, DC Dimming and High brightness mode</string>
+
 </resources>

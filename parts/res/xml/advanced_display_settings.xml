@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/advanced_display_title">
+
+    <PreferenceCategory
+        android:title="@string/htsr_enable_title"
+        android:order="-200">
+
+        <SwitchPreferenceCompat
+            android:key="htsr_enable"
+            android:icon="@drawable/ic_htsr"
+            android:title="@string/htsr_enable_title"
+            android:summary="@string/htsr_enable_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/dc_dimming_enable_title"
+        android:order="-190">
+
+        <SwitchPreferenceCompat
+            android:key="dc_dimming_enable"
+            android:icon="@drawable/ic_dcdimming"
+            android:title="@string/dc_dimming_enable_title"
+            android:summary="@string/dc_dimming_enable_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/hbm_mode_title"
+        android:order="-180">
+
+        <SwitchPreferenceCompat
+            android:key="hbm"
+            android:icon="@drawable/ic_hbm_tile"
+            android:title="@string/hbm_mode_title"
+            android:summary="@string/hbm_mode_summary"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:key="auto_hbm"
+            android:icon="@drawable/ic_auto_hbm"
+            android:title="@string/auto_hbm_title"
+            android:summary="@string/auto_hbm_summary" />
+
+        <org.lineageos.settings.hbm.AutoHBMThresholdPreference
+            android:key="auto_hbm_threshold"
+            android:title="@string/auto_hbm_threshold_title"
+            android:summary="@string/auto_hbm_threshold_summary" />
+
+        <org.lineageos.settings.hbm.AutoHBMTimePreference
+            android:key="hbm_disable_time"
+            android:title="@string/hbm_disable_time_title"
+            android:summary="@string/hbm_disable_time_summary" />
+
+        <com.android.settingslib.widget.FooterPreference
+            android:key="footer_preference"
+            android:title="@string/hbm_mode_warning"
+            android:selectable="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
