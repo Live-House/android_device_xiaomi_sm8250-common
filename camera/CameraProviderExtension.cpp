@@ -9,7 +9,6 @@
 #include <fstream>
 
 #define TORCH_BRIGHTNESS "brightness"
-#define TORCH_MAX_BRIGHTNESS "max_brightness"
 #define TOGGLE_SWITCH "/sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-05/c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d300/leds/led:switch_0/brightness"
 
 static std::string kTorchLedPaths[] = {
@@ -47,14 +46,12 @@ bool supportsSetTorchModeExt() {
 }
 
 int32_t getTorchDefaultStrengthLevelExt() {
-    return 50;
+    return 130;
 }
 
 int32_t getTorchMaxStrengthLevelExt() {
-    // In our device, both LEDs has same maximum value
-    // so get from one.
-    auto node = kTorchLedPaths[0] + "/" + TORCH_MAX_BRIGHTNESS;
-    return get(node, 0);
+    // 150 (out of 500) is a sane max brightness
+    return 150;
 }
 
 int32_t getTorchStrengthLevelExt() {
