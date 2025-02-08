@@ -16,7 +16,7 @@
 *
 */
 
-package org.lineageos.settings.display;
+package org.lineageos.settings.hbm;
 
 import android.annotation.TargetApi;
 import android.content.Context;

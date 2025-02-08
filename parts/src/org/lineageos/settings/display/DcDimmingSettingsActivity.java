@@ -21,14 +21,14 @@ import android.os.Bundle;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 
-public class DisplaySettingsActivity extends CollapsingToolbarBaseActivity  {
+public class DcDimmingSettingsActivity extends CollapsingToolbarBaseActivity  {
 
-    private static final String TAG_DISPLAY = "advanced_display_settings";
+    private static final String TAG_DCDIMMING = "dcdimming";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame,
-                new DisplaySettingsFragment(), TAG_DISPLAY).commit();
+                new DcDimmingSettingsFragment(), TAG_DCDIMMING).commit();
     }
 }
