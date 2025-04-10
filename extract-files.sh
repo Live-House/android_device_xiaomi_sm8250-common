@@ -74,6 +74,10 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             "${PATCHELF}" --replace-needed "libstagefright_foundation.so" "libstagefright_foundation-v33.so" "${2}"
             ;;
+        system_ext/bin/wfdservice64)
+            [ "$2" = "" ] && return 0
+            grep -q "libwfdservice_shim.so" "${2}" || "${PATCHELF}" --add-needed "libwfdservice_shim.so" "${2}"
+            ;;
         system_ext/lib64/libwfdmmsrc_system.so)
             [ "$2" = "" ] && return 0
             grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
