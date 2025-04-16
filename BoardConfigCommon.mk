@@ -108,9 +108,6 @@ TARGET_KERNEL_CONFIG := \
     vendor/xiaomi/sm8250-common.config
 BOARD_RAMDISK_USE_LZ4 := true # Allow LZ4 compression
 
-# Lineage Health
-TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
-
 # Media
 TARGET_USES_ION := true
 
