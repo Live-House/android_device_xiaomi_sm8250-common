@@ -64,8 +64,12 @@ public class ThermalTileService extends TileService {
             case ThermalUtils.STATE_DIALER:
                 return ThermalUtils.STATE_GAMING;
             case ThermalUtils.STATE_GAMING:
+                return ThermalUtils.STATE_NAVIGATION;
+            case ThermalUtils.STATE_NAVIGATION:
                 return ThermalUtils.STATE_STREAMING;
             case ThermalUtils.STATE_STREAMING:
+                return ThermalUtils.STATE_VIDEO;
+            case ThermalUtils.STATE_VIDEO:
             default:
                 return ThermalUtils.STATE_DEFAULT;
         }
@@ -83,8 +87,12 @@ public class ThermalTileService extends TileService {
                 return getString(R.string.thermal_dialer);
             case ThermalUtils.STATE_GAMING:
                 return getString(R.string.thermal_gaming);
+            case ThermalUtils.STATE_NAVIGATION:
+                return getString(R.string.thermal_navigation);
             case ThermalUtils.STATE_STREAMING:
                 return getString(R.string.thermal_streaming);
+            case ThermalUtils.STATE_VIDEO:
+                return getString(R.string.thermal_video);
             case ThermalUtils.STATE_DEFAULT:
             default:
                 return getString(R.string.thermal_default);
